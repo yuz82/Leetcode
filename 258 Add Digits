@@ -1,0 +1,17 @@
+//parse int to String
+
+public class Solution {
+    public int addDigits(int num) {
+        
+        String str = String.valueOf(num);
+        int len = str.length();
+        if(len != 1){
+            int sum = 0;
+            for(int i=0;i<len;i++){
+                sum += Character.getNumericValue(str.charAt(i));
+            }
+            num = addDigits(sum);
+        }
+        return num;
+    }
+}
