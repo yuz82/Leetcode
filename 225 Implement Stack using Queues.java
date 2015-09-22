@@ -41,6 +41,6 @@ class MyStack {
         }else {
             return true;
         }
-        
+        //return q1.peek() == null;   solution 2
     }
 }
