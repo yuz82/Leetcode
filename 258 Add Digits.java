@@ -1,5 +1,8 @@
 //Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
-//Could you do it without any loop/recursion in O(1) runtime?
+/*Could you do it without any loop/recursion in O(1) runtime?
+result = 1+(n-1)%9
+*/
+
 
 public class Solution {
     public int addDigits(int num) {
