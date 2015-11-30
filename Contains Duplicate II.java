@@ -11,14 +11,10 @@ public class Solution {
             if(hm.containsKey(nums[i])){
                 if(i-hm.get(nums[i])<=k){
                     return true;
-                }else{
-                    hm.put(nums[i],i);
                 }
-            }else{
-                List<Integer> list = new ArrayList<Integer>();
-                list.add(i);
-                hm.put(nums[i],i);
             }
+            hm.put(nums[i],i);
+            
         }
         return false;
     }
