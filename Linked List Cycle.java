@@ -32,3 +32,15 @@ public class Solution {
         return false;
     }
 }
+
+//recursive   point all nodes to head, if a certain node.next == head, there is a cycle, but it breaks the original list
+class HasCycleInLinkedList{
+   public boolean hasCycle(ListNode head){
+       if(head == null || head.next == null) return false;
+       if(head.next == head) return true;
+       ListNode nextNode = head.next; 
+       head.next = head;
+       boolean isCycle = hasCycle(nextNode);
+       return isCycle;
+   }
+}
