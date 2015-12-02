@@ -47,3 +47,25 @@ public class Solution {
         return count;
     }
 }
+
+//accepted   using bitset
+public class Solution {
+    public int countPrimes(int n) {
+        BitSet isNotPrime = new BitSet(n); //initialize with false
+        isNotPrime.set(0);
+        isNotPrime.set(1);
+        int count = 0;
+        int i = 0;
+        while(i < n){
+            i = isNotPrime.nextClearBit(++i);
+            if(i>=n){
+                return count;
+            }
+            count++;
+            for(int j=2;j*i<n;j++){
+                isNotPrime.set(j*i);
+            }
+        }
+        return count;
+    }
+}
