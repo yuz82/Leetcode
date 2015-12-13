@@ -25,3 +25,21 @@ public class Solution {
         return state[len];
     }
 }
+
+
+//solution 2
+public class Solution {
+    public boolean wordBreak(String s, Set<String> wordDict) {
+        int len = s.length();
+        boolean[] state = new boolean[len+1];
+        state[0] = true;
+        for(int i=0;i<len;i++){
+            for(int j=i+1;j<=len;j++){
+                if(state[i]&&wordDict.contains(s.substring(i,j))){
+                    state[j]=true;
+                }
+            }
+        }
+        return state[len];
+    }
+}
