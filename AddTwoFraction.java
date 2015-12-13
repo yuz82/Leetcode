@@ -20,7 +20,7 @@ public class AddTwoFraction {
     public static void main(String[] args) {
         System.out.println(asFraction(500, 1000)); //  "1/2"
         System.out.println(asFraction(17, 3));     //  "17/3"
-        System.out.println(asFraction(51493, 28718)); //  "22/51"
+        System.out.println(asFraction(1056, 2448)); //  "22/51"
     }
 }
 
