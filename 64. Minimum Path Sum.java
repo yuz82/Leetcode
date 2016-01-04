@@ -5,7 +5,7 @@ Note: You can only move either down or right at any point in time.
 */
 
 
-//dynamic programming
+//dynamic programming   O(m*n) space
 public class Solution {
     public int minPathSum(int[][] grid) {
         int m = grid.length;
@@ -20,5 +20,25 @@ public class Solution {
             }
         }
         return dp[m-1][n-1];
+    }
+}
+
+
+//O(n) space
+public class Solution {
+    public int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] dp = new int[n];
+        dp[0] = grid[0][0];
+        int tmp = 0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(i>0 || j>0){
+                    dp[j] = grid[i][j] + Math.min(i>0?dp[j]:Integer.MAX_VALUE, j>0?dp[j-1]:Integer.MAX_VALUE);
+                }
+            }
+        }
+        return dp[n-1];
     }
 }
