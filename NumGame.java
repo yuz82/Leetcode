@@ -1,3 +1,7 @@
+/*
+the numbers should equal to the difference of existed numbers in the array and the numbers in the array should keep distinct
+*/
+
 public static void numgame(int a, int b) {
         HashSet<Integer> map = new HashSet<>();
         map.add(a);
