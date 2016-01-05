@@ -21,10 +21,10 @@ public class Solution {
 //dynamic programming
 public class Solution {
     public int maxSubArray(int[] nums) {
-        int n = nums.length;
-        if(nums==null || n==0){
+        if(nums==null || nums.length==0){
             return 0;
         }
+        int n = nums.length;
         int[] dp = new int[n];
         dp[0] = nums[0];
         int max = dp[0];
