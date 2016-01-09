@@ -33,3 +33,23 @@ public class Solution {
     }
 }
 
+//bit manipulation
+public class Solution {
+    public int[] singleNumber(int[] nums) {
+        int n = nums.length;
+        int diff = 0; //get the XOR of two distinct number
+        for(int i=0;i<n;i++){
+            diff ^= nums[i];
+        }
+        diff &= -diff; // get the last set bit
+        int[] result = new int[2];
+        for(int i=0;i<n;i++){
+            if((nums[i]&diff) == 0){
+                result[0] ^= nums[i];
+            }else{
+                result[1] ^= nums[i];
+            }
+        }
+        return result;
+    }
+}
