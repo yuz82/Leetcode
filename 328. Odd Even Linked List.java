@@ -12,6 +12,43 @@ The relative order inside both the even and odd groups should remain as it was i
 The first node is considered odd, the second node even and so on ...
 */
 
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+ //note: node number
+public class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        int count = 1;
+        ListNode last = head;
+        while(last.next!=null){
+            count++;
+            last = last.next;
+        }
+        ListNode first = new ListNode(0);
+        first.next = head;
+        for(int i=0;i<count;i++){
+            if(i%2!=0){
+                last.next = new ListNode(head.val);
+                last = last.next;
+                head.val = head.next.val;
+                head.next = head.next.next;
+            }else{
+                head = head.next;
+            }
+        }
+        return first.next;
+    }
+}
+
 //when it talks about node value
 public class Solution {
     public ListNode oddEvenList(ListNode head) {
