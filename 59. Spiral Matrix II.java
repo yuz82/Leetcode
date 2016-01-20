@@ -16,19 +16,14 @@ public class Solution {
     public int[][] generateMatrix(int n) {
         int[][] res = new int[n][n];
         int k = 1;
-        int num = n*n;
-        int row = 0, col = 0;
         int left = 0, right = n-1, top = 0, bottom = n-1;
-        while(k<=num){ 
+        while(k<=n*n){ 
             //to right
             for(int i=left;i<=right;i++){
                 res[top][i] = k++;
             }
             top++;
             //to bottom
-            if(left>right || top>bottom){
-                break;
-            }
             for(int i=top;i<=bottom;i++){
                 res[i][right] = k++;
             }
@@ -39,9 +34,6 @@ public class Solution {
             }
             bottom--;
             //to top
-            if(left>right || top>bottom){
-                break;
-            }
             for(int i=bottom;i>=top;i--){
                 res[i][left] = k++;
             }
