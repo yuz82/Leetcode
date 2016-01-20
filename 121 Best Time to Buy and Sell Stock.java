@@ -21,3 +21,16 @@ public class Solution {
         return max;
     }
 }
+
+public class Solution {
+    public int maxProfit(int[] prices) {
+        int tmp = 0;
+        int max = 0;
+        int len = prices.length;
+        for(int i=1;i<len;i++){
+            tmp = Math.max(tmp + prices[i] - prices[i-1],0);
+            max = Math.max(tmp, max);
+        }
+        return max;
+    }
+}
