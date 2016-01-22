@@ -41,15 +41,18 @@ public class Solution {
 }
 
 public int climbStairs(int n) {
-    if(n==0||n==1) return  1;
-    int stepOne=1,stepTwo=1;
-    int result=0;
-    for(int i=2;i<=n;i++){
-        result=stepOne+stepTwo;
-        stepTwo=stepOne;
-        stepOne=result;
-    }
-    return result;
+    if(n<3){
+            return n;
+        }
+        int one = 1;
+        int two = 2;
+        int step = 0;
+        for(int i=3;i<=n;i++){
+            step = one + two;
+            one = two;
+            two = step;
+        }
+        return step;
 }
 
 public int climbStairs(int n) {
