@@ -24,13 +24,22 @@ public class Solution {
     }
 }
 
+
+//round2
 public class Solution {
     public int removeDuplicates(int[] nums) {
-        int count = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (i > 0 && nums[i - 1] == nums[i]) continue;
-            nums[count++] = nums[i];
+        int n = nums.length;
+        if(nums==null || n==0){
+            return 0;
         }
-        return count;
+        int count = 0;
+        for(int i=1;i<n;i++){
+            if(nums[i]==nums[count]){
+                continue;
+            }
+            nums[++count] = nums[i];
+        }
+        return ++count;
     }
 }
+
