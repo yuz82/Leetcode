@@ -46,32 +46,26 @@ public class Solution {
 
 //bfs
 public class Solution {
-    
     public int minDepth(TreeNode root) {
+        int level = 0;
         if(root==null){
-            return 0;
+            return level;
         }
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        TreeNode endOfLevel = root;
-        int depth = 1;
-        while(!queue.isEmpty()){
-            TreeNode node = queue.remove();
-            if(node.left==null&&node.right==null){
-                return depth;
+        int size = queue.size();
+        while(size>0){
+            level++;
+            for(int i=0;i<size;i++){
+                if(queue.peek().left==null && queue.peek().right==null){
+                    return level;
+                }
+                if(queue.peek().left!=null) { queue.add(queue.peek().left); }
+                if(queue.peek().right!=null) { queue.add(queue.peek().right); }
+                queue.poll();
             }
-            if(node.left!=null){
-                queue.add(node.left);
-            }
-            if(node.right!=null){
-                queue.add(node.right);
-            }
-            if(node==endOfLevel){
-                depth++;
-                endOfLevel = (node.right==null?node.left:node.right);
-            }
+            size = queue.size();
         }
-        return depth;
+        return level;
     }
-
 }
