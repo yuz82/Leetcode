@@ -25,7 +25,7 @@ public class Solution {
     }
 }
 
-/*
+
 public class Solution {
     public int majorityElement(int[] nums) {
         int candidate = 0; 
@@ -50,4 +50,4 @@ public int majorityElement(int[] nums) {
     Arrays.sort(nums);
     return nums[nums.length/2];
 }
-*/
+
