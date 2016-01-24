@@ -3,6 +3,7 @@ Given a string S, find the longest palindromic substring in S.
 You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
 */
 
+//aba  bb
 public class Solution {
     public String longestPalindrome(String s) {
         int n = s.length();
@@ -14,6 +15,7 @@ public class Solution {
         int pre = 0;
         int post = 0;
         for(int i=0;i<n;i++){
+            //for aba
             pre = i-1;
             post = i+1;
             while(pre>-1 && post<n && s.charAt(pre)==s.charAt(post)){
@@ -23,6 +25,7 @@ public class Solution {
                 max = post-pre+1;
                 longest = s.substring(pre, post+1);
             }
+            //for bb
             pre = i;
             post = i+1;
             while(pre>-1 && post<n && s.charAt(pre)==s.charAt(post)){
