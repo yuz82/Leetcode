@@ -31,8 +31,35 @@ public class Solution {
                 }
             }
         }
-        
     }
-  
-   
+}
+
+//solution 2
+public class Solution {
+    public void sortColors(int[] nums) {
+        int n = nums.length;
+        if(nums==null || n==0){ return; }
+        int left = 0;
+        int right = n-1;
+        for(int i=0;i<=right;i++){
+            if(i>left && nums[i]==0){
+                swap(left, i, nums);
+                left++;
+                i--;
+            }
+            if(i<right && nums[i]==2){
+                swap(right, i, nums);
+                right--;
+                i--;
+            }
+            
+            
+        }
+    }
+    
+    public void swap(int i, int j, int[] nums){
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
 }
