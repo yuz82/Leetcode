@@ -68,3 +68,50 @@ public int kthSmallest(TreeNode root, int k) {
 
         return 1 + countNodes(n.left) + countNodes(n.right);
     }
+
+
+
+//using heap to sort TreeNode
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    PriorityQueue<TreeNode> heap = new PriorityQueue<>(new Comparator<TreeNode>(){
+            public int compare(TreeNode n1, TreeNode n2){
+                if(n1.val>n2.val){
+                    return -1;
+                }else if(n1.val==n2.val){
+                    return 0;
+                }else{
+                    return 1;
+                }
+            }
+        });
+    int size = 0;
+    public int kthSmallest(TreeNode root, int k) {
+        if(root==null){return -1;}
+        size = k;
+        helper(root);
+        return heap.peek().val;
+    }
+    
+    public void helper(TreeNode root){
+        if(heap.size()==size){
+            if(root.val<heap.peek().val){
+                heap.poll();
+                heap.add(root);
+            }
+        }else{
+            heap.add(root);
+        }
+        if(root.left!=null) { helper(root.left); }
+        if(root.right!=null) { helper(root.right); }
+    }
+    
+}
