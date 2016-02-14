@@ -14,6 +14,7 @@ Return ["JFK","ATL","JFK","SFO","ATL","SFO"].
 Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"]. But it is larger in lexical order.
 */
 
+//PriorityQueue to handle lexical order
 public class Solution {
     public List<String> findItinerary(String[][] tickets) {
         int n = tickets.length;
