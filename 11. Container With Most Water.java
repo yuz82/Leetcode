@@ -5,7 +5,25 @@ Note: You may not slant the container.
 
 */
 
-//time limited exceed
+//O(n)
+public class Solution {
+    public int maxArea(int[] height) {
+        int left = 0, right = height.length - 1;
+        int max = 0;
+        while(left < right){
+            int tmp = Math.min(height[left], height[right]) * (right-left);
+            max = Math.max(max, tmp);
+            if(height[left] < height[right]){
+                left++;
+            }else{
+                right--;
+            }
+        }
+        return max;
+    }
+}
+
+//time limited exceed  O(n^2)
 public class Solution {
     public int maxArea(int[] height) {
         int n = height.length;
