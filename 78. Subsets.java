@@ -19,6 +19,28 @@ If nums = [1,2,3], a solution is:
 ]
 */
 
+public class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        int n = nums.length;
+        if(nums==null || n==0) { return res; }
+        Arrays.sort(nums);
+        res.add(new ArrayList<>());
+        for(int i=0;i<n;i++){
+            List<List<Integer>> list = new ArrayList<>();
+            int size = res.size();
+            for(int j=0;j<size;j++){
+                List<Integer> tmp = new ArrayList<>(res.get(j));
+                tmp.add(nums[i]);
+                list.add(tmp);
+            }
+            res.addAll(list);
+        }
+        return res;
+    }
+    
+}
+
 //combination
 public class Solution {
     public List<List<Integer>> subsets(int[] nums) {
