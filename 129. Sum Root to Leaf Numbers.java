@@ -27,6 +27,29 @@ Return the sum = 12 + 13 = 25.
  * }
  */
  
+//recursive
+public class Solution {
+    int sum = 0;
+    public int sumNumbers(TreeNode root) {
+        if(root==null) { return 0; }
+        helper(root, 0);
+        return sum;
+    }
+    
+    public void helper(TreeNode root, int num){
+        if(root.left==null && root.right==null){ 
+            sum += num*10 + root.val; 
+        }
+        if(root.left!=null){
+            helper(root.left, num*10 + root.val);
+        }
+        if(root.right!=null){
+            helper(root.right, num*10 + root.val);
+        }
+    }
+    
+}
+ 
 //DFS, but change the value of node
 public class Solution {
     public int sumNumbers(TreeNode root) {
