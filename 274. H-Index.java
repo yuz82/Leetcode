@@ -21,7 +21,7 @@ public class Solution {
         Arrays.sort(citations);
         int h = 0;
         for(int i=n;i>0;i--){
-            if(citations[n-i]>=i && (n>i?citations[n-i-1]<=i:true)){
+            if(citations[n-i]>=i){
                 h = i; break;
             }
         }
