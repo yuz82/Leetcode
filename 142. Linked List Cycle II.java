@@ -32,6 +32,7 @@ public class Solution {
 }
 
 //time limited exceed
+//can't modify the structure of the list, because it can't recognize the node if the node it points to changes.(.next)
 public class Solution {
     public ListNode detectCycle(ListNode head) {
         if(head==null || head.next == head) { return head; }
