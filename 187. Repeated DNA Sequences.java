@@ -11,6 +11,7 @@ Return:
 ["AAAAACCCCC", "CCCCCAAAAA"].
 */
 
+
 public class Solution {
     public List<String> findRepeatedDnaSequences(String s) {
         List<String> list = new ArrayList();
@@ -22,15 +23,10 @@ public class Solution {
             String tmp = s.substring(i,i+10);
             if(!hs.contains(tmp)){
                 hs.add(tmp);
-            }else{
-                if(!res.contains(tmp)){
-                    res.add(tmp);
-                }
+            }else if(!res.contains(tmp)){
+                res.add(tmp);
+                list.add(tmp);
             }
-        }
-        Iterator<String> it = res.iterator();
-        while(it.hasNext()){
-            list.add(it.next());
         }
         return list;
     }
