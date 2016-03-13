@@ -23,7 +23,7 @@ public class Solution {
     }
 }
 
-/*
+
 //less than O(n)
 public class Solution {
     public boolean containsDuplicate(int[] nums) {
@@ -47,4 +47,4 @@ public static boolean sortingSolution(int [] A) {
     }
     return false;
 }
-*/
+
