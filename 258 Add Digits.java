@@ -20,10 +20,10 @@ public class Solution {
     }
 }
 
-/* O(1)
+// O(1)
 public class Solution {
     public int addDigits(int num) {
-      return num>9?addDigits(num/10+num%10):num;   //return num - 9 * ((num - 1) / 9);
+      return 1 + (num - 1) % 9;
     }
 }
-*/
+
