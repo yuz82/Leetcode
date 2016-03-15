@@ -19,6 +19,23 @@ Try to do this in one pass.
  *     ListNode(int x) { val = x; }
  * }
  */
+ public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode first = new ListNode(0); first.next = head;
+        ListNode walker = first;
+        ListNode runner = head;
+        while(n-->1){
+            runner = runner.next;
+        }
+        while(runner.next!=null){
+            walker = walker.next;
+            runner = runner.next;
+        }
+        walker.next = walker.next.next;
+        return first.next;
+    }
+}
+ 
 public class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode first = new ListNode(0);
