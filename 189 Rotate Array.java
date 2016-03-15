@@ -11,16 +11,11 @@ Try to come up as many solutions as you can, there are at least 3 different ways
 public class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
-        int offset = k%n;
-        if(offset!=0){
-            int[] arr = Arrays.copyOf(nums, n); 
-            for(int i=0;i<n;i++){
-                if(i+offset<n){
-                    nums[i+offset] = arr[i];
-                }else{
-                    nums[i+offset-n] = arr[i];
-                }
-            }
+        if(nums==null || n==0) { return ; }
+        int[] res = Arrays.copyOf(nums, n);
+        k = k%n;
+        for(int i=0;i<n;i++){
+            nums[(i+k)%n] = res[i];
         }
     }
 }
