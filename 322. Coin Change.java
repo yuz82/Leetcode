@@ -16,24 +16,18 @@ You may assume that you have an infinite number of each kind of coin.
 //dynamic programming
 public class Solution {
     public int coinChange(int[] coins, int amount) {
-        Arrays.sort(coins);
         int n = coins.length;
-        int[] min = new int[amount+1];
-        min[0] = 0;
+        Arrays.sort(coins);
+        int[] dp = new int[amount+1];
+        dp[0] = 0;
         for(int i=1;i<=amount;i++){
-            min[i] = Integer.MAX_VALUE;
-        }
-        for(int i=1;i<=amount;i++){
+            dp[i] = Integer.MAX_VALUE;
             for(int j=0;j<n;j++){
-                if(coins[j]<=i && min[i-coins[j]]!=Integer.MAX_VALUE && min[i]>min[i-coins[j]]+1){
-                    min[i] = min[i-coins[j]]+1;
+                if(coins[j]<=i && dp[i-coins[j]]!=Integer.MAX_VALUE){
+                    dp[i] = Math.min(1 + dp[i-coins[j]], dp[i]);
                 }
             }
         }
-        if(min[amount]==Integer.MAX_VALUE){
-            return -1;
-        }
-        return min[amount];
+        return dp[amount]==Integer.MAX_VALUE?-1:dp[amount];
     }
-    
 }
