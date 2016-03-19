@@ -8,7 +8,7 @@
      * @return 
      */
     
-    public static List<String> Strobogrammatic(int n) {
+    public static List<String> Strobogrammatic2(int n) {
         List<String> res = new ArrayList();
         builder(n, "", res);
         return res;
