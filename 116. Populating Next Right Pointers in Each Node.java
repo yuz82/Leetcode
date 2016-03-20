@@ -40,27 +40,17 @@ After calling your function, the tree should look like:
  */
 public class Solution {
     public void connect(TreeLinkNode root) {
-        Queue<TreeLinkNode> queue = new LinkedList<TreeLinkNode>();
-        if(root==null){
-            return;
-        }
-        queue.add(root);
-        queue.add(new TreeLinkNode(Integer.MAX_VALUE));
-        while(queue.peek()!=null){
-            TreeLinkNode tmp = queue.poll();
-            if(tmp.left!=null){
-                queue.add(tmp.left);
-            }
-            if(tmp.right!=null){
-                queue.add(tmp.right);
-            }
-            TreeLinkNode head = queue.peek();
-            if(head==null || head.val!=Integer.MAX_VALUE){
-                tmp.next = head;
-            }else{
-                tmp.next = null;
-                queue.remove();
-                queue.add(new TreeLinkNode(Integer.MAX_VALUE));
+        if(root==null) { return;}
+        Queue<TreeLinkNode> queue = new LinkedList();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            for(int i=0;i<size;i++){
+                TreeLinkNode node = queue.poll();
+                if(node.left!=null) { queue.offer(node.left); }
+                if(node.right!=null) { queue.offer(node.right); }
+                if(i==size-1) { node.next = null; break; }
+                node.next = queue.peek();
             }
         }
     }
