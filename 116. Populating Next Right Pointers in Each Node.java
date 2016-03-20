@@ -38,6 +38,8 @@ After calling your function, the tree should look like:
  *     TreeLinkNode(int x) { val = x; }
  * }
  */
+ 
+ //BFS
 public class Solution {
     public void connect(TreeLinkNode root) {
         if(root==null) { return;}
@@ -52,6 +54,38 @@ public class Solution {
                 if(i==size-1) { node.next = null; break; }
                 node.next = queue.peek();
             }
+        }
+    }
+}
+
+//DFS recursive  
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root==null) { return;}
+        if(root.left!=null){
+            root.left.next = root.right;
+        }
+        if(root.right!=null && root.next!=null){
+            root.right.next = root.next.left;
+        }
+        connect(root.left);
+        connect(root.right);
+    }
+}
+
+//DFS 
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        TreeLinkNode level_start=root;
+        while(level_start!=null){
+            TreeLinkNode cur=level_start;
+            while(cur!=null){
+                if(cur.left!=null) cur.left.next=cur.right;
+                if(cur.right!=null && cur.next!=null) cur.right.next=cur.next.left;
+
+                cur=cur.next;
+            }
+            level_start=level_start.left;
         }
     }
 }
