@@ -13,6 +13,7 @@ The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
 **:only to the one below and it's next
 */
 
+//from bottom to top
 public class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         for(int i = triangle.size() - 2; i >= 0; i--)
@@ -23,7 +24,7 @@ public class Solution {
 }
 
 
-//use two arrays
+//from top to bottom use two arrays
 public class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         if(triangle==null) { return 0; }
