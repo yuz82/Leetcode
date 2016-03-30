@@ -47,3 +47,32 @@ public class Solution {
     }
     
 }
+
+
+
+public class Solution {
+    ListNode node = null;
+    public TreeNode sortedListToBST(ListNode head) {
+        if(head==null) { return null; }
+        node = head;
+        ListNode tail = head;
+        int size = 0;
+        while(tail!=null){
+            tail = tail.next;
+            size++;
+        }
+        return builder(0, --size);
+    }
+    
+    public TreeNode builder(int s, int e){
+        if(s>e) { return null; }
+        int mid = (s+e)/2;
+        TreeNode left = builder(s, mid-1);
+        TreeNode root = new TreeNode(node.val);
+        root.left = left;
+        node = node.next;
+        root.right = builder(mid+1, e);
+        return root;
+    }
+    
+}
