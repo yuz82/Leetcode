@@ -45,21 +45,17 @@ public class Solution {
 //DFS
 public class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> result = new ArrayList<Integer>();
-        rightView(root, result, 0);
-        return result;
+        List<Integer> res = new ArrayList();
+        if(root==null) { return res; }
+        helper(root, res, 0);
+        return res;
     }
-
-    public void rightView(TreeNode curr, List<Integer> result, int currDepth){
-        if(curr == null){
-            return;
-        }
-        if(currDepth == result.size()){
-            result.add(curr.val);
-        }
-
-        rightView(curr.right, result, currDepth + 1);
-        rightView(curr.left, result, currDepth + 1);
-
+    
+    public void helper(TreeNode root, List<Integer> res, int depth){
+        if(root==null) { return; }
+        if(depth==res.size()) { res.add(root.val); }
+        
+        helper(root.right, res, depth+1);
+        helper(root.left, res, depth+1);
     }
 }
