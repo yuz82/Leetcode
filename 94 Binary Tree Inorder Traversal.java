@@ -9,6 +9,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+ //divide and conquer
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
@@ -24,22 +25,19 @@ public class Solution {
 
 //iteration
 public class Solution {
-    
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> list = new ArrayList<Integer>();
-        if(root!=null){
-            Stack<TreeNode> stack = new Stack<TreeNode>();
-            while(root!=null||!stack.isEmpty()){
-                while(root!=null){
-                    stack.push(root);
-                    root = root.left;
-                }
-                root = stack.pop(); 
-                list.add(root.val); 
-                root = root.right;
+        List<Integer> res = new ArrayList<Integer>();
+        if(root==null) { return res; }
+        Stack<TreeNode> stack = new Stack();
+        while(root!=null || !stack.isEmpty()){
+            while(root!=null){
+                stack.push(root);
+                root = root.left;
             }
-            
+            root = stack.pop();
+            res.add(root.val);
+            root = root.right;
         }
-        return list;
+        return res;
     }
 }
