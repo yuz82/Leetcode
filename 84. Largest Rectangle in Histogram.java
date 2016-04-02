@@ -10,7 +10,7 @@ Given heights = [2,1,5,6,2,3],
 return 10.
 */
 
-//stack   O(n)
+//stack   O(n)：因为每个数进出这个stack的次数为1   递增栈
 public class Solution {
     public int largestRectangleArea(int[] heights) {
         int n = heights.length;
