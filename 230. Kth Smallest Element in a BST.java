@@ -52,66 +52,46 @@ public class Solution {
 
 
 //binary search   dfs
-public int kthSmallest(TreeNode root, int k) {
-        int count = countNodes(root.left);
-        if (k <= count) {
-            return kthSmallest(root.left, k);
-        } else if (k > count + 1) {
-            return kthSmallest(root.right, k-1-count); // 1 is counted as current node
-        }
+public class Solution {
 
-        return root.val;
+    public int kthSmallest(TreeNode root, int k) {
+        if(root==null) { return 0; }
+        int left = getNum(root.left);
+        if(left==k-1) { return root.val; }
+        if(left < k-1) { return kthSmallest(root.right, k-1-left); }
+        return kthSmallest(root.left, k);
     }
-
-    public int countNodes(TreeNode n) {
-        if (n == null) return 0;
-
-        return 1 + countNodes(n.left) + countNodes(n.right);
+    
+    public int getNum(TreeNode root){
+        if(root==null) { return 0; }
+        int left = getNum(root.left);
+        int right = getNum(root.right);
+        return left + right + 1;
     }
+    
+}
 
 
 
 //using heap to sort TreeNode
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 public class Solution {
-    PriorityQueue<TreeNode> heap = new PriorityQueue<>(new Comparator<TreeNode>(){
+    public int kthSmallest(TreeNode root, int k) {
+        PriorityQueue<TreeNode> heap = new PriorityQueue<>(new Comparator<TreeNode>(){
             public int compare(TreeNode n1, TreeNode n2){
-                if(n1.val>n2.val){
-                    return -1;
-                }else if(n1.val==n2.val){
-                    return 0;
-                }else{
-                    return 1;
-                }
+                return n2.val - n1.val;
             }
         });
-    int size = 0;
-    public int kthSmallest(TreeNode root, int k) {
-        if(root==null){return -1;}
-        size = k;
-        helper(root);
+        add(heap, root, k);
         return heap.peek().val;
     }
     
-    public void helper(TreeNode root){
-        if(heap.size()==size){
-            if(root.val<heap.peek().val){
-                heap.poll();
-                heap.add(root);
-            }
-        }else{
-            heap.add(root);
+    public void add(PriorityQueue<TreeNode> heap, TreeNode root, int k){
+        if(root==null) { return; }
+        heap.offer(root);
+        if(heap.size()>k){
+            heap.poll();
         }
-        if(root.left!=null) { helper(root.left); }
-        if(root.right!=null) { helper(root.right); }
+        add(heap, root.left, k); 
+        add(heap, root.right, k);
     }
-    
 }
