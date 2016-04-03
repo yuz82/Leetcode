@@ -17,18 +17,16 @@ If n = 4 and k = 2, a solution is:
 //recursive
 public class Solution {
     public List<List<Integer>> combine(int n, int k) {
-        List<List<Integer>> res = new ArrayList<>();
-        if(n<1 || k<1){ return res; }
+        List<List<Integer>> res = new ArrayList();
         helper(res, new ArrayList<Integer>(), 1, n, k);
         return res;
     }
     
-    public void helper(List<List<Integer>> res, List<Integer> list, int start, int n, int k){
-        if(k==0){
-            res.add(new ArrayList<Integer>(list));
-            return;
+    public void helper(List<List<Integer>> res, List<Integer> list, int s, int n, int k){
+        if(k==0) { 
+            res.add(new ArrayList<Integer>(list)); return;
         }
-        for(int i=start;i<=n;i++){
+        for(int i=s;i<=n;i++){
             list.add(i);
             helper(res, list, i+1, n, k-1);
             list.remove(list.size()-1);
