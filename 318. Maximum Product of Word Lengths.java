@@ -20,6 +20,35 @@ No such pair of words.
 public class Solution {
     public int maxProduct(String[] words) {
         int n = words.length;
+        Arrays.sort(words, new Comparator<String>(){
+            public int compare(String s1, String s2){
+                return s2.length() - s1.length();
+            }
+        });
+        int[] mask = new int[n];
+        for(int i=0;i<n;i++){
+            for(char c : words[i].toCharArray()){
+                mask[i] |= 1 << c-'a'; 
+            }
+        }
+        int max = 0;
+        for(int i=0;i<n;i++){
+            if(words[i].length()*words[i].length()<=max) { break; }
+            for(int j=i+1;j<n;j++){
+                if((mask[i] & mask[j]) == 0){
+                    max = Math.max(max, words[i].length()*words[j].length());
+                    break;
+                }
+            }
+        }
+        return max;
+    }
+}
+
+
+public class Solution {
+    public int maxProduct(String[] words) {
+        int n = words.length;
         List<Set<Character>> list = new ArrayList();
         for(int i=0;i<n;i++){
             Set<Character> hs = new HashSet<Character>();
