@@ -47,3 +47,28 @@ public class Solution {
         return Math.max(rob, rob(root.left)+rob(root.right));
     }
 }
+
+//DP
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: The maximum amount of money you can rob tonight
+     */
+    public int houseRobber3(TreeNode root) {
+        int[] res = dp(root);
+        return Math.max(res[0], res[1]);
+    }
+    
+    //0: notrob   1:rob
+    public int[] dp(TreeNode root){
+        if(root==null){
+            return new int[]{0, 0};
+        }
+        int[] left = dp(root.left);
+        int[] right = dp(root.right);
+        int[] res = new int[2];
+        res[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        res[1] = root.val + left[0] + right[0];
+        return res;
+    }
+}
