@@ -32,23 +32,21 @@ public class LongestSubstringwithAtMostTwoDistinctCharacters {
         return max;
     }
     
-    public static int lengthOfLongestSubstringTwoDistinct(String s) {
-        //O(n)
-        //first: the first position of a substring
-        //last: the last different element
-        //i: the current element
-        int first = 0, last = -1, maxLen = 0;
-        for (int i = 1; i < s.length(); i++) {
-            if (s.charAt(i) == s.charAt(i - 1)) {
-                continue;
+    public static int lengthOfLongestSubstringTwoDistinct(String str){
+        int n = str.length();
+        if(str==null || n==0) { return 0; }
+        int max = 0;
+        int start = 0, end = -1; //for the first element
+        for(int i=1;i<n;i++){
+            char c = str.charAt(i);
+            if(c==str.charAt(i-1)) { continue; }
+            if(end>-1 && c!=str.charAt(start)){
+                max = Math.max(max, i-start);
+                start = end + 1;
             }
-            if (last >= 0 && s.charAt(last) != s.charAt(i)) {
-                maxLen = Math.max(i - first, maxLen);
-                first = last + 1;
-            }
-            last = i - 1;
+            end = i - 1;
         }
-        return Math.max(s.length() - first, maxLen);
+        return Math.max(max, n-start);
     }
 
     public static void main(String[] a) {
