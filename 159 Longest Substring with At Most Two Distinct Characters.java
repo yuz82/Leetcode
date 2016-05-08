@@ -32,6 +32,7 @@ public class LongestSubstringwithAtMostTwoDistinctCharacters {
         return max;
     }
     
+    //record the start and end position for 1st element
     public static int lengthOfLongestSubstringTwoDistinct(String str){
         int n = str.length();
         if(str==null || n==0) { return 0; }
