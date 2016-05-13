@@ -27,6 +27,7 @@ The topological order can be:
  */
  
  //hashmap + queue   count in-degree
+ //O(n+m)   n:node   m:edge
 public class Solution {
     /**
      * @param graph: A list of Directed graph node
