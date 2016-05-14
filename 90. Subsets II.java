@@ -41,3 +41,23 @@ public class Solution {
     }
 }
 
+//recursion
+public class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        if(nums==null || nums.length==0) { return res; }
+        Arrays.sort(nums);
+        res.add(new ArrayList<Integer>());
+        helper(nums, res, 0, new ArrayList<Integer>());
+        return res;
+    }
+    
+    public void helper(int[] nums, List<List<Integer>> res, int i, List<Integer> list){
+        for(int k=i;k<nums.length;k++){
+            list.add(nums[k]);
+            if(!res.contains(list)) { res.add(new ArrayList<Integer>(list)); }
+            helper(nums, res, k+1, list);
+            list.remove(list.size()-1);
+        }
+    }
+}
