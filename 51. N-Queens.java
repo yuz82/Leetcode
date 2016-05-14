@@ -20,7 +20,54 @@ There exist two distinct solutions to the 4-queens puzzle:
   ".Q.."]
 ]
 */
+//solution 1  list.get(row) = column
+public class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> res = new ArrayList<List<String>>();
+        List<Integer> rows = new ArrayList<>();
+        helper(n, 0, rows, res);
+        return res;
+    }
+    
+    public void helper(int n, int row, List<Integer> rows, List<List<String>> res){
+        if(row==n) { res.add(print(rows)); return; }
+        for(int i=0;i<n;i++){
+            if(!isValid(rows, i)) { continue; }
+            rows.add(i);
+            helper(n, row+1, rows, res);
+            rows.remove(row);
+        }
+    }
+    
+    public boolean isValid(List<Integer> rows, int col){
+        int row = rows.size();
+        for(int i=0;i<row;i++){
+            if(rows.get(i) == col) { return false; }
+            if(i+rows.get(i) == row+col) { return false; }  //同一斜行x+y相等
+            if(i-rows.get(i) == row-col) { return false; }  //同一斜行x-y相等
+        }
+        return true;
+    }
+    
+    public List<String> print(List<Integer> rows){
+        List<String> list = new ArrayList<>();
+        for(int i=0;i<rows.size();i++){
+            StringBuilder sb = new StringBuilder();
+            for(int j=0;j<rows.size();j++){
+                if(j==rows.get(i)){
+                    sb.append('Q');
+                }else{
+                    sb.append('.');
+                }
+            }
+            list.add(sb.toString());
+        }
+        return list;
+    }
+}
 
+
+//solution 2
 public class Solution {
     List<List<String>> res = new ArrayList<List<String>>();
     public List<List<String>> solveNQueens(int n) {
