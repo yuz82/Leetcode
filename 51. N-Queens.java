@@ -43,8 +43,8 @@ public class Solution {
         int row = rows.size();
         for(int i=0;i<row;i++){
             if(rows.get(i) == col) { return false; }
-            if(i+rows.get(i) == row+col) { return false; }  //同一斜行x+y相等
-            if(i-rows.get(i) == row-col) { return false; }  //同一斜行x-y相等
+            if(i+rows.get(i) == row+col) { return false; }  //同一左斜行x+y相等
+            if(i-rows.get(i) == row-col) { return false; }  //同一右斜行x-y相等
         }
         return true;
     }
