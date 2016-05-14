@@ -18,6 +18,29 @@ If nums = [1,2,2], a solution is:
 
 */
 
+public class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        if(nums==null || nums.length==0) { return res; }
+        Arrays.sort(nums);
+        res.add(new ArrayList<Integer>());
+        int start = 0;
+        for(int i=0;i<nums.length;i++){
+            int size = res.size();
+            start = (i>0 && nums[i-1]==nums[i]) ? start : 0;
+            for(int j=start;j<size;j++){
+                List<Integer> list = new ArrayList<>(res.get(j));
+                list.add(nums[i]);
+                res.add(list);
+            }
+            start = size;
+        }
+        return res;
+    }
+    
+}
+
+
 //hashset
 public class Solution {
     List<List<Integer>> res = new ArrayList();
