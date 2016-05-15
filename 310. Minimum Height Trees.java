@@ -43,25 +43,25 @@ Note:
 public class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         int len = edges.length;
-        if(n==0) { return new ArrayList<Integer>(); }
+        if(n==0) { return new ArrayList<Integer>(); }     //only n==0
         HashMap<Integer, List<Integer>> hm = new HashMap<>();
-        for(int i=0;i<n;i++) { hm.put(i, new ArrayList<Integer>()); }
+        for(int i=0;i<n;i++) { hm.put(i, new ArrayList<Integer>()); }   //单独initial，保证每个点都有
         for(int i=0;i<len;i++){
             hm.get(edges[i][0]).add(edges[i][1]);
             hm.get(edges[i][1]).add(edges[i][0]);
         }
         List<Integer> leaves = new ArrayList<Integer>();
         for(Map.Entry<Integer, List<Integer>> e : hm.entrySet()){
-            if(e.getValue().size()<=1){ leaves.add(e.getKey()); }
+            if(e.getValue().size()<=1){ leaves.add(e.getKey()); }  //<=  保证edges为空时，node能加进去
         }
-        while(n>2){
-            n = n - leaves.size();
+        while(n>2){   //而不是leaves.size()>2 
+            n = n - leaves.size();  
             List<Integer> newLeaves = new ArrayList<>();
             for(int i=0;i<leaves.size();i++){
                 List<Integer> list = hm.get(leaves.get(i));
                 Integer node = list.get(0);
                 hm.get(node).remove(leaves.get(i));
-                if(hm.get(node).size()==1) { newLeaves.add(node); }
+                if(hm.get(node).size()==1) { newLeaves.add(node); }  //==  而不是<=，保证node只被加一次
             }
             leaves = newLeaves;
         }
