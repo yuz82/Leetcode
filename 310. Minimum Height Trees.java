@@ -39,7 +39,37 @@ Note:
 
 (2) The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
 */
+//HashMap<Integer, List<Integer>>
+public class Solution {
+    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+        int len = edges.length;
+        if(n==0) { return new ArrayList<Integer>(); }
+        HashMap<Integer, List<Integer>> hm = new HashMap<>();
+        for(int i=0;i<n;i++) { hm.put(i, new ArrayList<Integer>()); }
+        for(int i=0;i<len;i++){
+            hm.get(edges[i][0]).add(edges[i][1]);
+            hm.get(edges[i][1]).add(edges[i][0]);
+        }
+        List<Integer> leaves = new ArrayList<Integer>();
+        for(Map.Entry<Integer, List<Integer>> e : hm.entrySet()){
+            if(e.getValue().size()<=1){ leaves.add(e.getKey()); }
+        }
+        while(n>2){
+            n = n - leaves.size();
+            List<Integer> newLeaves = new ArrayList<>();
+            for(int i=0;i<leaves.size();i++){
+                List<Integer> list = hm.get(leaves.get(i));
+                Integer node = list.get(0);
+                hm.get(node).remove(leaves.get(i));
+                if(hm.get(node).size()==1) { newLeaves.add(node); }
+            }
+            leaves = newLeaves;
+        }
+        return leaves;
+    }
+}
 
+//List<Set<Integer>>
 public class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         int m = edges.length; 
