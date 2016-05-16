@@ -77,3 +77,61 @@ public class NumberofIslands {
         }
     }
 }
+
+
+
+//union find
+public class Solution {
+    HashMap<Integer, Integer> father = new HashMap<>();
+    int m, n;
+    public int numIslands(char[][] grid) {
+        m = grid.length;
+        if(grid==null || m==0){ return 0; }
+        n = grid[0].length;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]=='1'){
+                    int num = i*n+j;
+                    father.put(num, num);
+                }
+            }
+        }
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]=='1'){
+                    if(i+1<m && grid[i+1][j]=='1') { union(i*n+j, (i+1)*n+j); }
+                    if(j+1<n && grid[i][j+1]=='1') { union(i*n+j, i*n+j+1); }
+                }
+            }
+        }
+        int count = 0;
+        for(Map.Entry<Integer,Integer> e : father.entrySet()){
+            if(e.getKey().equals(e.getValue())){
+                ++count;
+            }
+        }
+        return count;
+    }
+    
+    public void union(int n1, int n2){
+        int fa1 = find(n1);
+        int fa2 = find(n2);
+        if(fa1!=fa2){
+            father.put(fa1, fa2);
+        }
+    }
+    
+    public int find(int x){
+          int parent =  father.get(x);
+          while(parent!=father.get(parent)) {
+            parent = father.get(parent);
+          }
+          int fa = father.get(x);
+          while(fa!=father.get(fa)) {
+            int temp = father.get(fa);
+            father.put(fa, parent) ;
+            fa = temp;
+          }
+          return parent;
+    }
+}
