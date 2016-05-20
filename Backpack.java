@@ -18,7 +18,7 @@ public class Solution {
     public int backPack(int m, int[] nums) {
         int n = nums.length;
         if(n==0) { return 0; }
-        boolean[][] dp = new boolean[n+1][m+1];
+        boolean[][] dp = new boolean[n+1][m+1];  表示前i个物品，取出一些物品能否组成体积和为j的背包
         for(int i=0;i<=n;i++){
             for(int j=0;j<=m;j++){
                 dp[i][j] = false;
