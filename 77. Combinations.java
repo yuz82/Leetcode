@@ -35,6 +35,31 @@ public class Solution {
 }
 
 
+//iterative
+public List<List<Integer>> combine(int n, int k) {
+		// write your code here
+		List<List<Integer>> res = new ArrayList<List<Integer>>();
+		if(n==0 || k==0){ return res; }
+		res.add(new ArrayList<Integer>());
+		for(int i=1;i<=n;i++){
+		    int size = res.size();
+		    for(int j=0;j<size;j++){
+		        if(res.get(j).size()<k){
+		            List<Integer> list = new ArrayList<Integer>(res.get(j));
+		            list.add(i);
+		            res.add(list);
+		        }
+		    }
+		}
+		for(int i=0;i<res.size();i++){
+		    if(res.get(i).size()!=k){
+		        res.remove(i--);
+		    }
+		}
+		return res;
+}
+
+
 //C(n,k)=C(n-1,k-1)+C(n-1,k)
 public class Solution {
     public List<List<Integer>> combine(int n, int k) {
